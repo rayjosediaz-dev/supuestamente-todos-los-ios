@@ -31,7 +31,7 @@ fi
 
 # Localization keys must be identical across the three language bundles;
 # a missing key renders the raw key string in the UI.
-"$ROOT/Tests/check_strings_alignment.sh"
+bash "$ROOT/Tests/check_strings_alignment.sh"
 
 # Issue #3 regression: a bare `Set.contains` function reference passed to
 # allSatisfy can resolve to a different overload under whole-module -O.
