@@ -1,0 +1,22 @@
+name: Pruebas de política - permisos corregidos
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "Tests/**"
+      - ".github/workflows/pruebas-permisos.yml"
+
+jobs:
+  policy-tests:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Corregir permisos de scripts
+        run: |
+          find Tests -type f -name "*.sh" -exec chmod +x {} \;
+      - name: Pruebas de política
+        run: bash Tests/run_policy_tests.sh
